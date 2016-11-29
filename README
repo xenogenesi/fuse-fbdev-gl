@@ -1,0 +1,7 @@
+# 1. run the framebuffer application which display the framebuffer in a glut window
+FRAMEBUFFER=/dev/shm/fb0 ./glfbe &
+
+#LD_PRELOAD="./libfbdrv.so" FRAMEBUFFER=/dev/shm/fb0 DISPLAY= DFBARGS="no-vt-switch" mms ; kbd_mode -s
+
+# 2. run an application to output something
+LD_PRELOAD="./libfbdrv.so" FRAMEBUFFER=/dev/shm/fb0 mplayer -vo fbdev2:/dev/shm/fb0  -vf scale=640:320 some-video-here.mp4
